@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercises - Nutriguide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}" class="nav-item">Dashboard</a>
+                <a href="{{ url_for('diet_plan') }}" class="nav-item">Diet</a>
+                <a href="{{ url_for('exercises') }}" class="nav-item active">Exercises</a>
+                <a href="{{ url_for('progress') }}" class="nav-item">Progress</a>
+                <a href="{{ url_for('notifications') }}" class="nav-item">Notifications</a>
+                <a href="{{ url_for('ai_assistant_page') }}" class="nav-item">AI Assistant</a>
+                <a href="{{ url_for('profile') }}" class="nav-item">Profile</a>
+                <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Exercise Routines</h2>
+        <div class="dashboard-grid">
+            <div class="card">
+                <div style="position: relative;">
+                    <div
+                        style="background: #333; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column;">
+                        <div style="font-size: 2rem;">🔥</div>
+                        <div style="margin-top: 10px;">Cardio Blast</div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h3 style="margin-bottom: 5px;">High Intensity Interval</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 15px;">20 mins •
+                        Intermediate • 300 kcal</p>
+                    <button class="btn">Start Workout</button>
+                </div>
+            </div>
+            <div class="card">
+                <div style="position: relative;">
+                    <div
+                        style="background: #333; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column;">
+                        <div style="font-size: 2rem;">🏋️</div>
+                        <div style="margin-top: 10px;">Strength Base</div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h3 style="margin-bottom: 5px;">Full Body Power</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 15px;">30 mins • Advanced •
+                        200 kcal</p>
+                    <button class="btn">Start Workout</button>
+                </div>
+            </div>
+            <div class="card">
+                <div style="position: relative;">
+                    <div
+                        style="background: #333; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; flex-direction: column;">
+                        <div style="font-size: 2rem;">🧘</div>
+                        <div style="margin-top: 10px;">Yoga Flow</div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <h3 style="margin-bottom: 5px;">Morning Stretch</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9em; margin-bottom: 15px;">15 mins • Beginner •
+                        80 kcal</p>
+                    <button class="btn">Start Workout</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

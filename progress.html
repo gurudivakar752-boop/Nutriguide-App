@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress - Nutriguide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}" class="nav-item">Dashboard</a>
+                <a href="{{ url_for('diet_plan') }}" class="nav-item">Diet</a>
+                <a href="{{ url_for('exercises') }}" class="nav-item">Exercises</a>
+                <a href="{{ url_for('progress') }}" class="nav-item active">Progress</a>
+                <a href="{{ url_for('notifications') }}" class="nav-item">Notifications</a>
+                <a href="{{ url_for('ai_assistant_page') }}" class="nav-item">AI Assistant</a>
+                <a href="{{ url_for('profile') }}" class="nav-item">Profile</a>
+                <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Your Progress</h2>
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Weight Trends</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Last 5 entries</p>
+                <!-- In a real app we'd use Chart.js here -->
+                <div
+                    style="width: 100%; height: 200px; background: var(--bg-color); border-radius: 8px; display: flex; align-items: flex-end; justify-content: space-around; padding: 10px;">
+                    <div style="width: 30px; height: 40%; background: var(--primary-color); border-radius: 4px;"></div>
+                    <div style="width: 30px; height: 60%; background: var(--primary-color); border-radius: 4px;"></div>
+                    <div style="width: 30px; height: 50%; background: var(--primary-color); border-radius: 4px;"></div>
+                    <div style="width: 30px; height: 70%; background: var(--primary-color); border-radius: 4px;"></div>
+                    <div style="width: 30px; height: 65%; background: var(--primary-color); border-radius: 4px;"></div>
+                </div>
+                <div
+                    style="display: flex; justify-content: space-between; margin-top: 10px; color: var(--text-secondary); font-size: 0.8rem;">
+                    <span>Week 1</span>
+                    <span>Week 5</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Calorie Adherence</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">Consistency</p>
+                <div
+                    style="display: flex; align-items: center; justify-content: center; height: 200px; flex-direction: column;">
+                    <div style="font-size: 4rem; color: var(--secondary-color); font-weight: 800;">85%</div>
+                    <p>On Track</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

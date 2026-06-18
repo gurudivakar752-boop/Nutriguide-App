@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Nutriguide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-item">Home</a>
+                <a href="{{ url_for('login') }}" class="nav-item active">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-item">Register</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container auth-container">
+        <div class="auth-box" style="border-top: 5px solid var(--primary-color);">
+            <h2 style="margin-bottom: 10px;">Welcome Back</h2>
+            <p style="margin-bottom: 25px; color: var(--text-secondary);">Access your personalized health dashboard</p>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="post">
+                <div class="form-group">
+                    <label for="username" style="font-weight: 600; display: block; margin-bottom: 8px;">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required
+                        style="padding: 15px;">
+                </div>
+                <div class="form-group">
+                    <label for="password" style="font-weight: 600; display: block; margin-bottom: 8px;">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required
+                        style="padding: 15px;">
+                </div>
+                <button type="submit" class="btn" style="padding: 15px;">Login to Account</button>
+            </form>
+            <p style="margin-top: 20px; font-size: 0.95rem; color: var(--text-secondary);">
+                Don't have an account? <a href="{{ url_for('register') }}" style="font-weight: 700;">Create one now</a>
+            </p>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

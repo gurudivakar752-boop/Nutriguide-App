@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Nutriguide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}" class="nav-item">Dashboard</a>
+                <a href="{{ url_for('diet_plan') }}" class="nav-item">Diet</a>
+                <a href="{{ url_for('exercises') }}" class="nav-item">Exercises</a>
+                <a href="{{ url_for('progress') }}" class="nav-item">Progress</a>
+                <a href="{{ url_for('notifications') }}" class="nav-item">Notifications</a>
+                <a href="{{ url_for('ai_assistant_page') }}" class="nav-item">AI Assistant</a>
+                <a href="{{ url_for('profile') }}" class="nav-item active">Profile</a>
+                <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Your Profile</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="card" style="max-width: 700px; margin: 0 auto; padding: 40px;">
+            <p style="margin-bottom: 30px; color: var(--text-secondary);">Update your stats to get the most accurate AI
+                recommendations.</p>
+            <form method="post" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Age</label>
+                    <input type="number" name="age" value="{{ user['age'] or '' }}" required style="padding: 12px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Gender</label>
+                    <select name="gender" style="padding: 12px;">
+                        <option value="male" {% if user['gender']=='male' %}selected{% endif %}>Male</option>
+                        <option value="female" {% if user['gender']=='female' %}selected{% endif %}>Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Height (cm)</label>
+                    <input type="number" name="height" step="0.1" value="{{ user['height'] or '' }}" required
+                        style="padding: 12px;">
+                </div>
+                <div class="form-group">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Weight (kg)</label>
+                    <input type="number" name="weight" step="0.1" value="{{ user['weight'] or '' }}" required
+                        style="padding: 12px;">
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Activity Level</label>
+                    <select name="activity_level" style="padding: 12px;">
+                        <option value="sedentary" {% if user['activity_level']=='sedentary' %}selected{% endif %}>
+                            Sedentary (Little/no exercise)</option>
+                        <option value="lightly_active" {% if user['activity_level']=='lightly_active' %}selected{% endif
+                            %}>Lightly Active (1-3 days/week)</option>
+                        <option value="moderately_active" {% if user['activity_level']=='moderately_active' %}selected{%
+                            endif %}>Moderately Active (3-5 days/week)</option>
+                        <option value="very_active" {% if user['activity_level']=='very_active' %}selected{% endif %}>
+                            Very Active (6-7 days/week)</option>
+                        <option value="extra_active" {% if user['activity_level']=='extra_active' %}selected{% endif %}>
+                            Extra Active (Physical job)</option>
+                    </select>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label style="font-weight: 600; display: block; margin-bottom: 8px;">Goal</label>
+                    <select name="goal" style="padding: 12px;">
+                        <option value="lose" {% if user['goal']=='lose' %}selected{% endif %}>Lose Weight (Deficit)
+                        </option>
+                        <option value="maintain" {% if user['goal']=='maintain' %}selected{% endif %}>Maintain Weight
+                        </option>
+                        <option value="gain" {% if user['goal']=='gain' %}selected{% endif %}>Gain Weight (Surplus)
+                        </option>
+                    </select>
+                </div>
+                <div style="grid-column: 1 / -1; margin-top: 10px;">
+                    <button type="submit" class="btn" style="padding: 15px;">Update Profile & Recalculate</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

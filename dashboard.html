@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Nutriguide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}" class="nav-item active">Dashboard</a>
+                <a href="{{ url_for('diet_plan') }}" class="nav-item">Diet</a>
+                <a href="{{ url_for('exercises') }}" class="nav-item">Exercises</a>
+                <a href="{{ url_for('progress') }}" class="nav-item">Progress</a>
+                <a href="{{ url_for('notifications') }}" class="nav-item">Notifications</a>
+                <a href="{{ url_for('ai_assistant_page') }}" class="nav-item">AI Assistant</a>
+                <a href="{{ url_for('profile') }}" class="nav-item">Profile</a>
+                <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Hello, {{ session['username'] }}!</h2>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Calories Consumed</h3>
+                <div class="stat-value">{{ calories_consumed }}</div>
+                <p>Target: {{ user['target_calories'] or 'Set Profile' }}</p>
+            </div>
+            <div class="card">
+                <h3>Calories Burned</h3>
+                <div class="stat-value">{{ calories_burned }}</div>
+            </div>
+            <div class="card">
+                <h3>Weight</h3>
+                <div class="stat-value">{{ user['weight'] or '--' }} kg</div>
+            </div>
+            <div class="card">
+                <h3>Quick Actions</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                    <a href="{{ url_for('ai_assistant_page') }}" class="btn-secondary">Chat with AI</a>
+                    <a href="{{ url_for('profile') }}" class="btn-secondary">Update Profile</a>
+                </div>
+            </div>
+
+            <div class="card" style="grid-column: 1 / -1;">
+                <h3>Today's Goals</h3>
+                <ul class="task-list" style="list-style: none; margin-top: 15px;">
+                    {% for task in tasks %}
+                    <li
+                        style="margin-bottom: 10px; display: flex; align-items: center; padding: 10px; background: var(--bg-color); border-radius: 8px;">
+                        <input type="checkbox" id="task-{{ task['id'] }}" {% if task['is_completed'] %}checked{% endif
+                            %} onchange="toggleTask({{ task['id'] }})"
+                            style="width: 20px; height: 20px; margin-right: 15px; cursor: pointer;">
+                        <label for="task-{{ task['id'] }}"
+                            style="cursor: pointer; font-size: 1.1rem; {% if task['is_completed'] %}text-decoration: line-through; color: var(--text-secondary);{% endif %}"
+                            id="label-{{ task['id'] }}">
+                            {{ task['task_text'] }}
+                        </label>
+                    </li>
+                    {% else %}
+                    <li>No tasks generated yet. Update your profile!</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

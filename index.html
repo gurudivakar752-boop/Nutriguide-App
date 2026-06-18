@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutriguide - Your Health Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-item active">Home</a>
+                <a href="{{ url_for('login') }}" class="nav-item">Login</a>
+                <a href="{{ url_for('register') }}" class="nav-item">Register</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero"
+            style="text-align: center; padding: 60px 20px; background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%); border-radius: var(--radius); margin-bottom: 40px; box-shadow: var(--shadow);">
+            <h1 style="font-size: 3rem; margin-bottom: 20px;">Your Personal AI Health Coach</h1>
+            <p style="font-size: 1.3rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto 30px;">
+                Achieve your dream physique with personalized nutrition plans, workout routines, and real-time AI
+                guidance.
+            </p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <a href="{{ url_for('register') }}" class="btn"
+                    style="width: auto; padding: 15px 40px; font-size: 1.1rem;">Get Started Free</a>
+                <a href="{{ url_for('login') }}" class="btn btn-secondary"
+                    style="width: auto; padding: 15px 40px; font-size: 1.1rem;">Login</a>
+            </div>
+            <div style="margin-top: 40px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow);">
+                <!-- Placeholder for Hero Image -->
+                <div
+                    style="background: #ddd; height: 350px; width: 100%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #888;">
+                    Interactive Dashboard Preview
+                </div>
+            </div>
+        </section>
+
+        <section class="features"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px;">
+            <div class="card" style="text-align: center; padding: 30px;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🥗</div>
+                <h3>Smart Diet Plans</h3>
+                <p>Tailored meal suggestions based on your BMR and goals.</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 30px;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">💪</div>
+                <h3>Workout Routines</h3>
+                <p>Curated exercises for cardio, strength, and flexibility.</p>
+            </div>
+            <div class="card" style="text-align: center; padding: 30px;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🤖</div>
+                <h3>AI Assistant</h3>
+                <p>Chat with our AI to get instant answers to health queries.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

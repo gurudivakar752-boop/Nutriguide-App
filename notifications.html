@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Nutriguide</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Outfit:wght@700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">NutriGuide</div>
+            <div class="menu-toggle">☰</div>
+            <div class="nav-links">
+                <a href="{{ url_for('dashboard') }}" class="nav-item">Dashboard</a>
+                <a href="{{ url_for('diet_plan') }}" class="nav-item">Diet</a>
+                <a href="{{ url_for('exercises') }}" class="nav-item">Exercises</a>
+                <a href="{{ url_for('progress') }}" class="nav-item">Progress</a>
+                <a href="{{ url_for('notifications') }}" class="nav-item active">Notifications</a>
+                <a href="{{ url_for('ai_assistant_page') }}" class="nav-item">AI Assistant</a>
+                <a href="{{ url_for('profile') }}" class="nav-item">Profile</a>
+                <a href="{{ url_for('logout') }}" class="nav-item">Logout</a>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Notifications</h2>
+        <div class="card">
+            <p style="color: grey; text-align: center;">No new notifications.</p>
+        </div>
+    </main>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
